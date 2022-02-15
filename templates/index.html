@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Request Stock Information {% endblock %}</h1>
+
+<form method="POST" action="/">
+    {{ form.csrf_token }}
+    <p>
+        {{ form.ticker.label }}
+        {{ form.ticker(size=20) }}
+    </p>
+
+    {% if form.ticker.errors %}
+    <ul class="errors">
+        {% for error in form.ticker.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <p>
+        {{ form.date.label }}
+        {{ form.date() }}
+    </p>
+
+    {% if form.date.errors %}
+    <ul class="errors">
+        {% for error in form.date.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <p>
+        <input type="submit" value="Request">
+    </p>
+</form>
+
+{% endblock %}

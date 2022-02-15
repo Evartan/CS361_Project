@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+<h1>{% block title %} Results {% endblock %}</h1>
+<a href="{{ url_for('.download_file') }}">Download This Page As PDF</a>
+</div>
+<div>
+<hr>
+{% for result in results_list %}
+<h2> Company: {{ result['Company'] }} </h2>
+<h4> Date: {{ result['date'] }} </h4>
+<h4> Previous close: {{ result['Previous close'] }} </h4>
+<h4> Open: {{ result['Open'] }} </h4>
+<h4> PE ratio: {{ result['PE ratio'] }} </h4>
+<h4> EPS: {{ result['EPS'] }} </h4>
+<hr>
+</div>
+{% endfor %}
+{% endblock %}
