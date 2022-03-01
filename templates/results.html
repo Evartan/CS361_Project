@@ -8,13 +8,10 @@
 <div>
 <hr>
 {% for result in results_list %}
-<h2> Company: {{ result['Company'] }} </h2>
-<h4> Date: {{ result['date'] }} </h4>
-<h4> Previous close: {{ result['Previous close'] }} </h4>
-<h4> Open: {{ result['Open'] }} </h4>
-<h4> PE ratio: {{ result['PE ratio'] }} </h4>
-<h4> EPS: {{ result['EPS'] }} </h4>
+    {% for key, value in result.items() %}
+        <h4> {{key}} : {{value}} </h4>
+    {% endfor %}
 <hr>
-</div>
 {% endfor %}
 {% endblock %}
+</div>

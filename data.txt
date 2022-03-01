@@ -1,1 +1,1 @@
-not found
+{"Ticker": "MSFT", "Date": "2021-07-13", "High": "282.85", "Low": "277.39", "Open": "277.52", "Close": "280.98", "Volume": "26120100", "Adj Close": "279.35"}

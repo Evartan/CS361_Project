@@ -3,6 +3,7 @@ from forms import CourseForm
 import json
 import os
 import pdfkit
+import time
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
@@ -21,21 +22,25 @@ def index():
                      }
         json_dump = json.dumps(json_data, default=str)
         # creating file with json object
-        with open("send.txt", "w") as file:
+        with open("send.txt", "w+") as file:
             data = json_dump
             file.write(data)
 
-        # check if the prng-service.txt file exists
-        file_exists = os.path.exists('data.txt')
+        with open("run.txt", "w+") as r:
+            r.write('run')
 
-        if file_exists:
-            # if the file exists, open it checking for "run"
-            with open("data.txt", "r+") as file:
-                data = file.read()
-                if data == 'not found':
-                    return redirect(url_for('not_found'))
-                data_dict = json.loads(data)
-                results_list.insert(0, data_dict)
+        # sleep 3 second
+        time.sleep(3)
+
+        # if the file exists, open it checking for "run"
+        with open("data.txt", "r+") as file:
+            data = file.read()
+
+            if data == 'not found':
+                return redirect(url_for('not_found'))
+
+            data_dict = json.loads(data)
+            results_list.insert(0, data_dict)
 
         return redirect(url_for('results'))
     return render_template('index.html', form=form)
