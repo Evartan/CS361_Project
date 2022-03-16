@@ -1,0 +1,15 @@
+html, body, div {
+    margin:0;
+    padding:0;
+    background-color: floralwhite
+}
+h1 {
+    margin:0;
+}
+nav a, head {
+    color: #d64161;
+    font-size: 3em;
+    margin-left: 50px;
+    text-decoration: none;
+    
+}

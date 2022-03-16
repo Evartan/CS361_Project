@@ -1,17 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-<h1>{% block title %} Results {% endblock %}</h1>
-<a href="{{ url_for('.download_file') }}">Download This Page As PDF</a>
+<div class="d-flex justify-content-center">
+<a href="{{ url_for('.download_file') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Download This Page As PDF</a>
 </div>
 <div>
-<hr>
-{% for result in results_list %}
-    {% for key, value in result.items() %}
-        <h4> {{key}} : {{value}} </h4>
-    {% endfor %}
-<hr>
-{% endfor %}
+<table id="data" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ticker</th>
+            <th>Date</th>
+            <th>High</th>
+            <th>Low</th>
+            <th>Open</th>
+            <th>Close</th>
+            <th>Volume</th>
+            <th>Adjusted Close</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in results_list %}
+            
+            <tr>
+                <td>{{ result.Ticker }}</td>
+                <td>{{ result.Date }}</td>
+                <td>{{ result.High }}</td>
+                <td>{{ result.Low }}</td>
+                <td>{{ result.Open }}</td>
+                <td>{{ result.Close }}</td>
+                <td>{{ result.Volume }}</td>
+                <td>{{ result.Adj_close }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
 {% endblock %}
-</div>

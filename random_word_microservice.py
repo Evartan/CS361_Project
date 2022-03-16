@@ -1,3 +1,5 @@
+# This is the microservice provided to my teammate Jesse Zelaya
+
 from flask import Flask
 from random_word import RandomWords
 r = RandomWords()

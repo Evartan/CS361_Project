@@ -1,3 +1,5 @@
+# This is the microservice provided to me by teammate Masud Hussain
+
 import requests
 import pandas_datareader as pdr
 from pandas_datareader._utils import RemoteDataError
@@ -77,11 +79,16 @@ def getStock(stock_name, date):
 
             amount = round(list(value.values())[0], 2)
 
-            wrap_int = f"{amount}"
+            wrap_int = f'{amount:.2f}'
 
             new_dict[key] = wrap_int
 
         # insert ticker and date key value pairs
+
+        new_key = "Adj_close"
+        old_key = "Adj Close"
+
+        new_dict[new_key] = new_dict.pop(old_key)
 
         result_json = json.dumps(new_dict)
 

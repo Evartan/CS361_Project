@@ -1,21 +1,21 @@
 from flask import Flask, render_template, redirect, send_file, url_for
 from forms import CourseForm
 import json
-import os
 import pdfkit
 import time
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
 
-results_list = []
+Bootstrap(app)
 
+results_list = []
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
     form = CourseForm()
     if form.validate_on_submit():
-        # instad of appending to results we need to create a file with json data
         # saving data to json format
         json_data = {'ticker': form.ticker.data,
                      'date': form.date.data,
@@ -29,10 +29,9 @@ def index():
         with open("run.txt", "w+") as r:
             r.write('run')
 
-        # sleep 3 second
         time.sleep(3)
 
-        # if the file exists, open it checking for "run"
+        # open data.txt file checking for "not found" or data json
         with open("data.txt", "r+") as file:
             data = file.read()
 
@@ -53,8 +52,8 @@ def results():
 
 @app.route('/download')
 def download_file():
-    pdfkit.from_url('http://127.0.0.1:5000/results/', 'results.pdf')
-    return send_file('results.pdf', as_attachment=True)
+    pdfkit.from_url('http://127.0.0.1:5000/results/', 'stock_results.pdf')
+    return send_file('stock_results.pdf', as_attachment=True)
 
 
 @app.route('/not_found/')
